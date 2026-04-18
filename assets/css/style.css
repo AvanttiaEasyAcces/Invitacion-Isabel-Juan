@@ -418,6 +418,79 @@ transition: all 1s;
 .con-scroll {
 overflow-y: scroll;
 }
+/* Envelope Design */
+.envelope-wrapper {
+    position: relative;
+    max-width: 550px;
+    width: 90%;
+    margin: 0 auto;
+    padding: 140px 20px 50px 20px;
+    background-color: #e5d7ba;
+    background-image: url(../img/vintage_bg.png);
+    background-blend-mode: multiply;
+    border: 1px solid #d3c4a2;
+    border-radius: 6px;
+    box-shadow: 0 25px 40px rgba(0,0,0,0.4), inset 0 0 50px rgba(130,100,50,0.1);
+	z-index: 5;
+}
+.envelope-flap {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 160px;
+    background-color: #ebdcb2;
+    background-image: url(../img/vintage_bg.png);
+    background-blend-mode: multiply;
+    clip-path: polygon(0 0, 100% 0, 50% 100%);
+    border-top-left-radius: 6px;
+    border-top-right-radius: 6px;
+	z-index: 3;
+}
+.envelope-flap-shadow {
+    position: absolute;
+    top: 5px;
+    left: 0;
+    width: 100%;
+    height: 160px;
+    background-color: rgba(0,0,0,0.4);
+    clip-path: polygon(0 0, 100% 0, 50% 100%);
+    filter: blur(6px);
+	z-index: 2;
+}
+.envelope-folds {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: 
+        linear-gradient(to top right, transparent 49.5%, rgba(0,0,0,0.15) 50%, rgba(255,255,255,0.4) 50.5%, transparent 51%) bottom left / 50% 50% no-repeat,
+        linear-gradient(to top left, transparent 49.5%, rgba(0,0,0,0.15) 50%, rgba(255,255,255,0.4) 50.5%, transparent 51%) bottom right / 50% 50% no-repeat;
+    pointer-events: none;
+    z-index: 2;
+	border-bottom-left-radius: 6px;
+	border-bottom-right-radius: 6px;
+}
+/* Envelope Anima */
+.envelope-wrapper {
+    transition: transform 1s ease-in-out;
+}
+.envelope-flap, .envelope-flap-shadow {
+    transition: transform 0.8s ease-in-out, opacity 0.8s;
+    transform-origin: top center;
+}
+.open-envelope .envelope-flap {
+    transform: rotateX(180deg);
+    z-index: 1;
+}
+.open-envelope .envelope-flap-shadow {
+    transform: rotateX(180deg) translateY(-5px);
+    opacity: 0;
+}
+.open-envelope {
+    transform: translateY(20px);
+}
 .particles {
   position:absolute;
   top:-100px;

@@ -394,6 +394,10 @@
 
 			<p align="center" class="color-textos mb-30 wow fadeInUp" data-wow-delay="0.2s">Con todo nuestro amor,<br>
 				Isabel y Juan.</p>
+			<div align="center" class="wow fadeInUp" data-wow-delay="0.3s" style="margin-top: 20px;">
+				<a style="cursor: pointer;" class="link-abrir color-principal"
+					onclick="document.getElementById('modalBancario').style.display='flex'">Ver datos Bancarios</a>
+			</div>
 		</div>
 		</div>
 	</section>
@@ -681,10 +685,54 @@
 				if (typeof funciones === 'function') funciones();
 			}, 900);
 		}
+
+		function copyToClipboard(text) {
+			if (navigator.clipboard) {
+				navigator.clipboard.writeText(text).then(function () {
+					alert("Dato copiado al portapapeles: " + text);
+				});
+			} else {
+				var tempInput = document.createElement("input");
+				tempInput.value = text;
+				document.body.appendChild(tempInput);
+				tempInput.select();
+				document.execCommand("copy");
+				document.body.removeChild(tempInput);
+				alert("Dato copiado al portapapeles: " + text);
+			}
+		}
 	</script>
 
-</body>
+	<!-- Modal Flotante Datos Bancarios -->
+	<div id="modalBancario"
+		style="display: none; position: fixed; z-index: 99999; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.7); align-items: center; justify-content: center;">
+		<div
+			style="background: rgba(255,255,255,0.98); border-radius: 15px; padding: 30px; width: 90%; max-width: 400px; text-align: center; box-shadow: 0 10px 25px rgba(0,0,0,0.5); position: relative; border: 1px solid #e0e0e0;">
 
-<!-- Mirrored from rheainvitaciones.com/-/2025/Mar-DavidAndrea/1-Persona-x13.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 10 Jun 2025 23:47:30 GMT -->
+			<p class="color-titulos" style="font-size: 24px; margin-bottom: 20px; color: #222 !important;">BBVA</p>
+
+			<div style="display: flex; align-items: center; justify-content: center; margin-bottom: 15px;">
+				<p class="color-textos mb-0" style="font-size: 18px; margin-right: 10px; color: #333 !important;">
+					<strong>CUENTA:</strong> 1120027669
+				</p>
+				<img src="assets/img/copy.png" style="width: 24px; cursor: pointer;"
+					onclick="copyToClipboard('1120027669')" title="Copiar Cuenta" />
+			</div>
+
+			<div style="display: flex; align-items: center; justify-content: center; margin-bottom: 25px;">
+				<p class="color-textos mb-0" style="font-size: 18px; margin-right: 10px; color: #333 !important;">
+					<strong>CLABE:</strong> 012180011200276696
+				</p>
+				<img src="assets/img/copy.png" style="width: 24px; cursor: pointer;"
+					onclick="copyToClipboard('012180011200276696')" title="Copiar CLABE" />
+			</div>
+
+			<button
+				style="cursor: pointer; padding: 8px 30px; border-radius: 20px; font-size: 16px; display: inline-block; margin-top: 10px; border: none; background-color: #b8915c; color: #ffffff !important; text-decoration: none; font-family: inherit;"
+				onclick="document.getElementById('modalBancario').style.display='none'">Cerrar</button>
+		</div>
+	</div>
+
+</body>
 
 </html>
